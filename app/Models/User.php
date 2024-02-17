@@ -1,12 +1,24 @@
 <?php
 
 namespace App\Models; 
+use App\Models\Kelas;
+use App\Models\Jurusan;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public function kelas()
+    {
+        return $this->hasOne(Kelas::class);
+    }
+
+    public function jurusan()
+    {
+        return $this->hasOne(Jurusan::class);
+    }
+
     use Notifiable;
 
 
