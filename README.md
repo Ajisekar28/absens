@@ -1,8 +1,8 @@
-<p align="center"><a href="https://ams.aliatayee.com" target="_blank"><h1>Attendance Management System</h1></a></p>
+<p align="center"><a href="https://ams.aliatayee.com" target="_blank"><h1>AbsensiKu</h1></a></p>
 
-## About Attendance Management System
+## About AbsensiKu
 
-Attendance Management System is a web application based on Laravel which keeps track of employee hours. It is the system you use to document the time your employees work and the time they take off.
+AbsensiKu is a web application based on Laravel which keeps track of employee hours. It is the system you use to document the time your employees work and the time they take off.
 
 ## Major Technologies
 - HTML5
@@ -10,14 +10,11 @@ Attendance Management System is a web application based on Laravel which keeps t
 - JAVASCRIPT
 - BOOTSTRAP
 - PHP
-- LARAVEL
-
-## Demo
-<a href="http://ams.alihost.co">Demo link</a> 
+- LARAVEL 
 
   ### Admin credential
-    username:ali@aliatayee.com
-    password:ali123
+    username:admin@example.com
+    password:password
 
 
 ### Install & Setup
@@ -26,13 +23,7 @@ To setup and install Attendance Management System project, follow the below step
 - Clone this project by the command: 
 
 ```
-$ git clone https://github.com/aliatayee/Attendance_Management_System
-```
-
-- Then switch to the project folder by the bellow query:
-
-```
-$ cd Attendance_Management_System
+$ git clone https://github.com/Ajisekar28/absens
 ```
 
 - Then open ```env``` file and update database credentials.
