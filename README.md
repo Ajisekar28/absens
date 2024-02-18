@@ -14,6 +14,7 @@ AbsensiKu is a web application based on Laravel which keeps track of employee ho
 
   ### Admin credential
     username:admin@example.com
+    <br>
     password:password
 
 
