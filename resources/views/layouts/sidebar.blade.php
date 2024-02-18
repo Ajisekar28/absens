@@ -33,6 +33,11 @@
                                 </a>
                             </li>
                             <li class="">
+                                <a href="/kelas" class="waves-effect {{ request()->is("kelas") || request()->is("kelas/*") ? "mm active" : "" }}">
+                                    <i class="ti-time"></i> <span> Kelas </span>
+                                </a>
+                            </li>
+                            <li class="">
                                 <a href="/check" class="waves-effect {{ request()->is("check") || request()->is("check/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Attendance Sheet </span>
                                 </a>
