@@ -32,6 +32,7 @@ class SiswaController extends Controller
     {
         $kelas = Kelas::all();
         return view('admin.siswa_create', compact('kelas'));
+        
     }
 
     /**
