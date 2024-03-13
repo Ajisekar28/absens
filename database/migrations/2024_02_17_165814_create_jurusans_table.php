@@ -18,6 +18,7 @@ class CreateJurusansTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('nama');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +30,10 @@ class CreateJurusansTable extends Migration
      */
     public function down()
     {
+        Schema::table('jurusans', function(Blueprint $table){
+            $table->dropColumn('deleted_at');
+        });
+
         Schema::dropIfExists('jurusans');
     }
 }

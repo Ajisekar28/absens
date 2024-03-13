@@ -38,6 +38,16 @@
                                 </a>
                             </li>
                             <li class="">
+                                <a href="/jurusan" class="waves-effect {{ request()->is("jurusan") || request()->is("jurusan/*") ? "mm active" : "" }}">
+                                    <i class="ti-time"></i> <span> Jurusan </span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/siswa" class="waves-effect {{ request()->is("siswa") || request()->is("siswa/*") ? "mm active" : "" }}">
+                                    <i class="ti-time"></i> <span> Siswa </span>
+                                </a>
+                            </li>
+                            <li class="">
                                 <a href="/check" class="waves-effect {{ request()->is("check") || request()->is("check/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Attendance Sheet </span>
                                 </a>

@@ -16,8 +16,11 @@ class CreateKelasTable extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('jurusan_id');
             $table->string('nama');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +32,9 @@ class CreateKelasTable extends Migration
      */
     public function down()
     {
+        Schema::table('kelas', function(Blueprint $table){
+            $table->dropColumn('deleted_at');
+        });
         Schema::dropIfExists('kelas');
     }
 }

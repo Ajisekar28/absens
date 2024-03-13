@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
 
     Route::resource('/schedule', '\App\Http\Controllers\ScheduleController');
     Route::resource('/kelas', '\App\Http\Controllers\KelasController');
+    Route::resource('/jurusan', '\App\Http\Controllers\JurusanController');
+    Route::resource('/siswa', '\App\Http\Controllers\SiswaController');
 
     Route::get('/check', '\App\Http\Controllers\CheckController@index')->name('check');
     Route::get('/sheet-report', '\App\Http\Controllers\CheckController@sheetReport')->name('sheet-report');

@@ -6,9 +6,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
             </div>
-            <h4 class="modal-title"><b>Add Kelas</b></h4>
+            <h4 class="modal-title"><b>Add Jurusan</b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="{{ route('kelas.store') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('jurusan.store') }}">
                     @csrf
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Nama</label>

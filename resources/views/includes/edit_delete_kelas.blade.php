@@ -19,6 +19,16 @@
                         </div>
                     </div>
             </div>
+            <div class="form-group">
+                <label for="jurusan_id" class="col-sm-3 control-label">Jurusan</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="jurusan_id" name="jurusan_id">
+                        @foreach($jurusans as $jurusan)
+                        <option value="{{ $jurusan->id }}" {{ old('jurusan_id', $kelas->jurusan_id) == $jurusan->id ? 'selected' : '' }}>{{ $jurusan->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal">
                     <i class="fa fa-close"></i> Close

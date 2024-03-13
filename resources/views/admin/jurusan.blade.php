@@ -7,10 +7,10 @@
 
 @section('breadcrumb')
 <div class="col-sm-6">
-    <h4 class="page-title text-left">Kelas</h4>
+    <h4 class="page-title text-left">Jurusan</h4>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Kelas</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Jurusan</a></li>
 
     </ol>
 </div>
@@ -51,15 +51,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $kelas)
+                                @foreach ($data as $jurusan)
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
-                                    <td> {{ $kelas->nama }} </td>
+                                    <td> {{ $jurusan->nama }} </td>
                                     <td>
-                                        <a href="#editKelas{{ $kelas->id }}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat">
+                                        <a href="#editJurusan{{ $jurusan->id }}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat">
                                             <i class='fa fa-edit'></i> Edit
                                         </a>
-                                        <a href="#deleteKelas{{ $kelas->id }}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat">
+                                        <a href="#deleteJurusan{{ $jurusan->id }}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat">
                                             <i class='fa fa-trash'></i> Delete
                                         </a>
 
@@ -77,11 +77,11 @@
 
 <!-- Your table code goes here -->
 
-@foreach ($data as $kelas)
-@include('includes.edit_delete_kelas', ['kelas' => $kelas])
+@foreach ($data as $jurusan)
+@include('includes.edit_delete_jurusan', ['jurusan' => $jurusan])
 @endforeach
 
-@include('includes.add_kelas')
+@include('includes.add_jurusan')
 
 @endsection
 

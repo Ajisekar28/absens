@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Jurusan;
 use App\Models\User;
 use App\Http\Requests\KelasEmp;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,8 @@ class KelasController extends Controller
     public function index()
     {
         $data = Kelas::all();
-        return view('admin.kelas', compact('data'));
+        $jurusans = Jurusan::all(); // Add this line
+        return view('admin.kelas', compact('data', 'jurusans'));
     }
 
     public function store(KelasEmp $request)
@@ -22,6 +24,7 @@ class KelasController extends Controller
 
         $kelas = new Kelas;
         $kelas->nama = $request->nama;
+        $kelas->jurusan_id = $request->jurusan_id; // Add this line
         $kelas->user_id = Auth::id(); // Set user_id sesuai dengan user yang sedang login
         $kelas->save();
 
@@ -31,15 +34,12 @@ class KelasController extends Controller
 
     public function update(KelasEmp $request, Kelas $kelas, string $id)
     {
-        $request->validated();
+        $kelas = Kelas::findOrFail($id);
 
-        $kelas = Kelas::find($id);
-        if (!$kelas) {
-            flash()->error('Error', 'Kelas tidak ditemukan !');
-            return redirect()->route('kelas.index');
-        }
+        $validatedData = $request->validated();
 
         $kelas->nama = $request->nama;
+        $kelas->jurusan_id = $request->jurusan_id; // add this line
         $kelas->user_id = Auth::id();
         $kelas->save();
 

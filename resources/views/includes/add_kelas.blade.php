@@ -12,9 +12,16 @@
                     @csrf
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Nama</label>
-
                         <div class="col-sm-9">
                             <input type="text" class="form-control timepicker" id="name" name="nama">
+                        </div>
+                        <label for="jurusan_id" class="col-sm-3 control-label">Jurusan</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="jurusan_id" name="jurusan_id">
+                                @foreach($jurusans as $jurusan)
+                                <option value="{{ $jurusan->id }}">{{ $jurusan->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
             </div>
