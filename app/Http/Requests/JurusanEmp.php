@@ -25,6 +25,16 @@ class JurusanEmp extends FormRequest
     {
         return [
             'nama' => 'required|string|min:3|max:32',
+            'user_id' => 'required|unique:jurusans',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nama.required' => 'Nama jurusan wajib diisi.',
+            'user_id.required' => 'Nama BK wajib diisi.',
+            'user_id.unique' => 'Nama BK sudah digunakan untuk jurusan lain.',
         ];
     }
 }

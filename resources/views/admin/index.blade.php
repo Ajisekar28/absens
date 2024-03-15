@@ -7,10 +7,13 @@
 
 @section('breadcrumb')
 <div class="col-sm-6 text-left" >
-     <h4 class="page-title">Dashboard</h4>
-     <ol class="breadcrumb">
-         <li class="breadcrumb-item active">Welcome to Attendance Management System</li>
-     </ol>
+    
+    <h4 class="page-title">Dashboard - {{ Auth::user()->name }}</h4>
+
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Welcome to Attendance Management System</li>
+    </ol>
 </div>
 @endsection
 

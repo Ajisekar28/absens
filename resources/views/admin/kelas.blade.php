@@ -47,8 +47,9 @@
                                 <tr>
                                     <th data-priority="1">No</th>
                                     <th data-priority="2">Nama</th>
+                                    <th data-priority="4">Jurusan</th>
                                     <th data-priority="3">Nama Wali</th>
-                                    <th data-priority="4">Action</th>
+                                    <th data-priority="5">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,6 +57,7 @@
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
                                     <td> {{ $kelas->nama }} </td>
+                                    <td> {{ $kelas->jurusan->nama }} </td>
                                     <td> {{ $kelas->user->name }}</td>
                                     <td>
                                         <a href="#editKelas{{ $kelas->id }}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat">

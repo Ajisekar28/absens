@@ -24,9 +24,22 @@ class SiswaRec extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|string|min:3|max:64|alpha_dash',
-            'rfid' => 'required|string||min:3|max:50',
-            'kelamin' => 'required|string|max:50'
+            'name' => 'required|string|max:255',
+            'rfid' => 'required|string|max:255|unique:siswas',
+            'kelamin' => 'required|string',
+            'class_id' => 'required',
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Nama siswa wajib diisi.',
+            'rfid.required' => 'RFID siswa wajib diisi.',
+            'rfid.unique' => 'RFID siswa tidak boleh sama',
+            'kelamin.required' => 'Kelamin siswa wajib diisi.',
+            'class_id.required' => 'Kelas siswa wajib dipilih.',
+        ];
+
     }
 }

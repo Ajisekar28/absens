@@ -14,20 +14,34 @@
                     {{ method_field('PUT') }}
                     <div class="form-group">
                         <label for="edit_name" class="col-sm-3 control-label">Nama</label>
-                        <div class="col-lg-8">
+                        <div class="col-lg-9">
                             <input type="text" class="form-control" id="edit_name" name="nama" value="{{ $kelas->nama }}">
                         </div>
+                        <label for="jurusan_id" class="col-sm-3 control-label">Jurusan</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="jurusan_id" name="jurusan_id">
+                                <option value="{{$kelas->jurusan_id}}">{{$kelas->jurusan->nama}}</option>
+                                @foreach($jurusans as $jurusan)
+                                    @if($kelas->jurusan_id != $jurusan->id)
+                                        <option value="{{ $jurusan->id }}">{{ $jurusan->nama }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <label for="user_id" class="col-sm-3 control-label">Nama Wali</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="user_id" name="user_id">
+                                <option value="{{$kelas->user_id}}">{{$kelas->user->name}}</option>
+                                @foreach($users as $user)
+                                    @if($user->roles->contains('slug', 'wali') && $kelas->user_id != $user->id)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+
+
                     </div>
-            </div>
-            <div class="form-group">
-                <label for="jurusan_id" class="col-sm-3 control-label">Jurusan</label>
-                <div class="col-sm-9">
-                    <select class="form-control" id="jurusan_id" name="jurusan_id">
-                        @foreach($jurusans as $jurusan)
-                        <option value="{{ $jurusan->id }}" {{ old('jurusan_id', $kelas->jurusan_id) == $jurusan->id ? 'selected' : '' }}>{{ $jurusan->nama }}</option>
-                        @endforeach
-                    </select>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal">

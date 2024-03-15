@@ -18,16 +18,12 @@ class Jurusan extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function kelas(){
-        return $this->hasMany(Kelas::class);
-    }
-
-    public function siswa()
+    public function kelas()
     {
-        return $this->hasMany(Siswa::class);
+        return $this->hasMany(Kelas::class);
     }
 
     use HasFactory;

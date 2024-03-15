@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
 use App\Models\Kelas;
+use App\Models\Siswa;
 use App\Models\Jurusan;
-use App\Http\Requests\SiswaRec;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\SiswaRec;
+use Illuminate\Validation\Rule;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SiswaController extends Controller
 {
@@ -20,7 +22,7 @@ class SiswaController extends Controller
     public function index()
     {
         $data = Siswa::all();
-        $kelas = Kelas::all(); // Add this line
+        $kelas = Kelas::all();
         return view('admin.siswa', compact('data', 'kelas'));
     }
     /**
@@ -30,8 +32,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $kelas = Kelas::all();
-        return view('admin.siswa_create', compact('kelas'));
+        //
         
     }
 
@@ -41,16 +42,17 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SiswaRec $request,)
+    public function store(SiswaRec $request)
     {
-        $validatedData = $request->validated();
+        // dd($request);
+        $request->validated();
 
-        $kelas = Kelas::findOrFail($request->class_id);
+        // $kelas = Kelas::findOrFail($request->class_id);
 
         $siswa = new Siswa;
         $siswa->nama = $request->name;
         $siswa->rfid = $request->rfid;
-        $siswa->kelamin = $request->gender;
+        $siswa->kelamin = $request->kelamin;
         $siswa->kelas_id = $request->class_id;
         $siswa->save();
 
@@ -89,18 +91,38 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SiswaRec $request, Siswa $siswa, string $id)
+    public function update(Request $request, string $id)
     {
-        $siswa = FindOrFail::siswa($id);
+        $request->validate([
+            'name' => 'required|string|min:3|max:32',
+            'rfid' => [
+                'required',
+                Rule::unique('siswas', 'rfid')->ignore($id),
+            ],
+            'class_id' => 'required',
+            'kelamin' => 'required|string',
+        ], [
+            'nama.required' => 'Nama siswa wajib diisi.',
+            'rfid.required' => 'RFID wajib diisi.',
+            'rfid.unique' => 'RFID sudah digunakan untuk siswa lain.',
+            'kelas_id.required' => 'Nama kelas wajib diisi.',
+            'kelamin.required' => 'Jenis kelamin wajib diisi.',
 
-        $validatedData = $request->validated();
+        ]);
 
-        $siswa->nama = $request->nama;
+        $siswa = Siswa::FindOrFail($id);
+        if (!$siswa) {
+            flash()->error('Error', 'Siswa tidak ditemukan !');
+            return redirect()->route('siswa.index');
+        }
+
+        $siswa->nama = $request->name;
         $siswa->rfid = $request->rfid;
+        $siswa->kelas_id = $request->class_id;
         $siswa->kelamin = $request->kelamin;
         $siswa->save();
 
-        flash()->success('Success', 'Siswa berhasil ditambahkan!');
+        flash()->success('Success', 'Siswa berhasil diupdate!');
         return redirect()->route('siswa.index');
     }
 
@@ -112,7 +134,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $siswa = FindOrFail::siswa($id);
+        $siswa = Siswa::FindOrFail($id);
 
         $siswa->delete();
         flash()->success('Success', 'Siswa berhasil dihapus!');

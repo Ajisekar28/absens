@@ -30,8 +30,10 @@ class DatabaseSeeder extends Seeder
         // Create users and assign roles
         $users = [
             ['name' => 'Admin User', 'email' => 'admin@example.com', 'password' => Hash::make('password'), 'roles' => ['admin']],
-            ['name' => 'BK User', 'email' => 'bk@example.com', 'password' => Hash::make('password'), 'roles' => ['bk']],
-            ['name' => 'Wali User', 'email' => 'wali@example.com', 'password' => Hash::make('password'), 'roles' => ['wali']],
+            ['name' => 'BK User1', 'email' => 'bk1@example.com', 'password' => Hash::make('password'), 'roles' => ['bk']],
+            ['name' => 'BK User2', 'email' => 'bk2@example.com', 'password' => Hash::make('password'), 'roles' => ['bk']],
+            ['name' => 'Wali User1', 'email' => 'wali1@example.com', 'password' => Hash::make('password'), 'roles' => ['wali']],
+            ['name' => 'Wali User2', 'email' => 'wali2@example.com', 'password' => Hash::make('password'), 'roles' => ['wali']],
         ];
 
         foreach ($users as $userData) {

@@ -17,10 +17,5 @@ class Siswa extends Model
         return $this->belongsTo(Kelas::class);
     }
 
-    public function jurusan()
-    {
-        return $this->belongsTo(Jurusan::class);
-    }
-
     use HasFactory;
 }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Jurusan;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\JurusanEmp;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class JurusanController extends Controller
@@ -17,7 +20,8 @@ class JurusanController extends Controller
     public function index()
     {
         $data = Jurusan::all();
-        return view('admin.jurusan', compact('data'));
+        $users = User::all();
+        return view('admin.jurusan', compact('data', 'users'));
     }
 
     /**
@@ -36,13 +40,13 @@ class JurusanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(JurusanEmp $request,)
+    public function store(JurusanEmp $request)
     {
         $request->validated();
-
+        // dd($request);
         $jurusan = new Jurusan;
         $jurusan->nama = $request->nama;
-        $jurusan->user_id = Auth::id(); // Set user_id sesuai dengan user yang sedang login
+        $jurusan->user_id = $request->user_id; 
         $jurusan->save();
 
         flash()->success('Success', 'Jurusan berhasil ditambahkan!');
@@ -78,9 +82,19 @@ class JurusanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(JurusanEmp $request, string $id)
+    public function update(Request $request, string $id)
     {
-        $request->validated();
+        $request->validate([
+            'nama' => 'required|string|min:3|max:32',
+            'user_id' => [
+                'required',
+                Rule::unique('jurusans', 'user_id')->ignore($id),
+            ],
+        ], [
+        'nama.required' => 'Nama jurusan wajib diisi.',
+        'user_id.required' => 'Nama BK wajib diisi.',
+        'user_id.unique' => 'Nama BK sudah digunakan untuk jurusan lain.',
+        ]);
 
         $jurusan = Jurusan::findOrFail($id);
         if (!$jurusan) {
@@ -89,7 +103,7 @@ class JurusanController extends Controller
         }
 
         $jurusan->nama = $request->nama;
-        $jurusan->user_id = Auth::id();
+        $jurusan->user_id = $request->user_id;
         $jurusan->save();
 
         flash()->success('Success', 'Jurusan berhasil diupdate!');

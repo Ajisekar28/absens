@@ -25,6 +25,18 @@ class KelasEmp extends FormRequest
     {
         return [
             'nama' => 'required|string|min:3|max:32',
+            'jurusan_id' => 'required',
+            'user_id' => 'required|unique:kelas',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nama.required' => 'Nama jurusan wajib diisi.',
+            'jurusan_id.required' => 'Jurusan wajib diisi.',
+            'user_id.required' => 'Nama Wali wajib diisi.',
+            'user_id.unique' => 'Nama Wali sudah digunakan untuk kelas lain.',
         ];
     }
 }

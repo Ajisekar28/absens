@@ -43,6 +43,7 @@
                                                             <th>Student ID</th>
                                                             <th>Nama</th>
                                                             <th>RFID</th>
+                                                            <th>Kelas</th>
                                                             <th>Kelamin</th>
                                                             <th>Actions</th>
                                                         </tr>
@@ -53,6 +54,7 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $siswa->nama }}</td>
                                                             <td>{{ $siswa->rfid }}</td>
+                                                            <td>{{ $siswa->kelas->nama }}</td>
                                                             <td>{{ $siswa->kelamin }}</td>
                                                             <td>
                                                                 <a href="#editSiswa{{ $siswa->id }}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class="fa fa-edit"></i> Edit</a>

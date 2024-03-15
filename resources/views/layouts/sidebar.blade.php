@@ -33,13 +33,13 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="/kelas" class="waves-effect {{ request()->is("kelas") || request()->is("kelas/*") ? "mm active" : "" }}">
-                                    <i class="ti-time"></i> <span> Kelas </span>
+                                <a href="/jurusan" class="waves-effect {{ request()->is("jurusan") || request()->is("jurusan/*") ? "mm active" : "" }}">
+                                    <i class="ti-time"></i> <span> Jurusan </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="/jurusan" class="waves-effect {{ request()->is("jurusan") || request()->is("jurusan/*") ? "mm active" : "" }}">
-                                    <i class="ti-time"></i> <span> Jurusan </span>
+                                <a href="/kelas" class="waves-effect {{ request()->is("kelas") || request()->is("kelas/*") ? "mm active" : "" }}">
+                                    <i class="ti-time"></i> <span> Kelas </span>
                                 </a>
                             </li>
                             <li class="">

@@ -15,19 +15,18 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user() === null) {
-            abort(403, 'Unauthorized action.');
+        if (auth()->guest()) {
+            return redirect()->route('admin')->with('error', 'User tidak mempunyai hak akses.');
         }
 
+        $actions = $request->route()->getAction();
+        $roles = isset($actions['roles']) ? $actions['roles'] : null;
 
-
-        $actions = request()->route()->getAction();
-        $roles = isset($actions['roles']) ? $actions['roles'] : Null;
-
-        if (auth()->user()->hasAnyRole($roles) && $roles !== Null) {
+        if (auth()->user()->hasAnyRole($roles) && $roles !== null) {
             return $next($request);
         }
 
-        abort(403, 'Unauthorized action.');
+        return redirect()->route('admin')->with('error', 'User tidak mempunyai hak akses.');
     }
+
 }

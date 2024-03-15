@@ -29,8 +29,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <select class="form-control" id="gender" name="gender" required>
+                            <label for="kelamin">Gender</label>
+                            <select class="form-control" id="kelamin" name="kelamin" required>
                                 <option value="">- Select Gender -</option>
                                 <option value="laki laki">Laki-laki</option>
                                 <option value="perempuan">Perempuan</option>

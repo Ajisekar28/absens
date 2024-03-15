@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Kelas;
 use App\Models\Employee;
 use App\Models\Latetime;
 use App\Models\Attendance;
+use App\Http\Controllers\Controller;
 
 
 class AdminController extends Controller
@@ -27,8 +29,8 @@ class AdminController extends Controller
             }
         
         $data = [$totalEmp, $ontimeEmp, $latetimeEmp, $percentageOntime];
-        
-        return view('admin.index')->with(['data' => $data]);
+        $kelas = Kelas::all();
+        return view('admin.index', compact('kelas'))->with(['data' => $data]);
     }
 
 }

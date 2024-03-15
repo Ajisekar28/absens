@@ -16,11 +16,9 @@ class CreateSiswasTable extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kelas_id');
-            $table->unsignedBigInteger('jurusan_id');
             $table->string('nama');
             $table->string('rfid');
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
-            $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
             $table->string('kelamin');
             $table->rememberToken();
             $table->timestamps();

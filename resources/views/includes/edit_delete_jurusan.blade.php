@@ -17,6 +17,19 @@
                         <div class="col-lg-8">
                             <input type="text" class="form-control" id="edit_name" name="nama" value="{{ $jurusan->nama }}">
                         </div>
+                        <div class="form-group">
+                            <label for="edit_user" class="col-sm-3 control-label">Nama BK</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="edit_user" name="user_id" required>
+                                    <option value="{{$jurusan->user_id}}">{{$jurusan->user->name}}</option>
+                                    @foreach($users as $user)
+                                        @if($user->roles->contains('slug', 'bk') && $jurusan->user_id != $user->id)
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
             </div>
             <div class="modal-footer">

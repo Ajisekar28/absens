@@ -23,6 +23,17 @@
                                 @endforeach
                             </select>
                         </div>
+                        <label for="user_id" class="col-sm-3 control-label">Nama Wali</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="user_id" name="user_id">
+                                @foreach($users as $user)
+                                    @if($user->roles->contains('slug', 'wali'))
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+
                     </div>
             </div>
             <div class="modal-footer">

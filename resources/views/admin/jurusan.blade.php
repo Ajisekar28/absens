@@ -47,7 +47,8 @@
                                 <tr>
                                     <th data-priority="1">No</th>
                                     <th data-priority="2">Nama</th>
-                                    <th data-priority="3">Action</th>
+                                    <th data-priority="3">Nama BK</th>
+                                    <th data-priority="4">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,6 +56,7 @@
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
                                     <td> {{ $jurusan->nama }} </td>
+                                    <td> {{ $jurusan->user->name }} </td>
                                     <td>
                                         <a href="#editJurusan{{ $jurusan->id }}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat">
                                             <i class='fa fa-edit'></i> Edit

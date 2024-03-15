@@ -16,6 +16,13 @@
          <div class="content-page">  
             <div class="content">
                 <div class="container-fluid">
+                    <br>
+                    @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                    @endif
+
                    @include('layouts.settings')
                    @yield('content')
                 </div> 

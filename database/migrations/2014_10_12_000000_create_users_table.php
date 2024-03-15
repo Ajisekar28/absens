@@ -17,16 +17,10 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            // $table->unsignedBigInteger('jurusan_id');
-            // $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
-            // $table->unsignedBigInteger('kelas_id');
-            // $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
             $table->string('pin_code')->nullable();
-            $table->text('permissions')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('password');
         });
     }
 
